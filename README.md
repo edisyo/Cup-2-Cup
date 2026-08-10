@@ -1,9 +1,8 @@
-A homework project in Unity for a Latvian Mobile Game Developer company.
-This was my first serious project in Unity. 
-
-
 # Cup 2 Cup
 <img width="826" height="1235" alt="Cup2Cup" src="https://github.com/user-attachments/assets/2e8c9ab4-e7b5-4b99-afab-c2b362f9f465" />
+
+A homework project in Unity for a Latvian Mobile Game Developer company.
+This was my first serious project in Unity. 
 
 A 3D swipe-based stacking puzzle for Android, built in Unity.
 
