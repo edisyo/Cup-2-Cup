@@ -96,7 +96,36 @@ public class touchManager : MonoBehaviour, IEndDragHandler {
                 startGame();
             }
         }
+    
+        #if UNITY_EDITOR
+                if (gameStarted && Input.touchCount == 0)
+                {
+                    if (Input.GetMouseButtonDown(0) && activeCup == null)
+                    {
+                        Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+                        RaycastHit mouseHit;
+                        int mouse_layer_mask = LayerMask.GetMask("Platform");
 
+                        if (Physics.Raycast(mouseRay, out mouseHit, 999f, mouse_layer_mask)
+                            && !EventSystem.current.IsPointerOverGameObject())
+                        {
+                            touchStart = Input.mousePosition;
+                            touchEnd = Input.mousePosition;
+                            activeCup = mouseHit.collider.gameObject;
+                            activeCup.GetComponent<Platform>().setToHighlighColor();
+                        }
+                    }
+
+                    if (Input.GetMouseButtonUp(0) && activeCup != null)
+                    {
+                        touchEnd = Input.mousePosition;
+                        activeCup.GetComponent<Platform>().setToNormalColor();
+                        checkSwipeDirection();
+                        activeCup = null;
+                    }
+                }
+        #endif
+        
         if (gameStarted)
         {
             //print("Game started: ");
